@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import Header from './component/Header'
 import Footer from './component/Footer'
 import HandlingEvent from './component/HandlingEvent'
+import { Link, Route } from 'react-router-dom';
+// import { Flip } from 'react-reveal/Flip'
+import Axios from 'axios';
 
 class App extends Component {
 
@@ -12,9 +15,30 @@ class App extends Component {
     super()
     this.nama_panjang = 'andi'
     this.state = {
-      nama: 'andi kangen band',
-      umur: '30'
+      nama: '',
+      umur: '',
+      judul:[]
     }
+  }
+
+  componentDidMount() {
+    this.getFacebook()
+  }
+
+  getFacebook = () => {
+    Axios.get('http://www.omdbapi.com/?s=avatar&apikey=90c122f6')
+    .then(res => {
+      var film = res
+      var optionArray = []
+      for(var i = 0;i<film.data.Search.length;i++) {
+        var x = (film.data.Search[i].Title)
+        optionArray.push(x)
+      }
+      this.setState({
+        judul: optionArray
+      })
+      console.log(this.state.judul)
+    })
   }
 
   sum(x) {
@@ -29,7 +53,7 @@ class App extends Component {
       background: 'blue'
     }
 
-    const biodata = {
+    var biodata = {
       nama: 'johan',
       marga: 'batak'
     }
@@ -46,7 +70,6 @@ class App extends Component {
       return 'belum login'
     }
 
-    var teks = 'this footer created by props'
     const siswa = ['bagas','aji','sby']
     const listSiswa = siswa.map((siswa,index_siswa) => 
      <li key={index_siswa}>{siswa} indexnya {index_siswa}</li>
@@ -61,6 +84,8 @@ class App extends Component {
       <div>
         <Header></Header>
       <h1 style={style_h1}>Hello World! {nama} !</h1>
+      <h1>coba get data</h1>
+       <h1>{this.state.judul[2]}</h1>
       <h2>puspa = {this.sum(8)}</h2>
       <div>
       <p style={{color:'green',textAlign:'center'}}>jangan jangan jangan</p>
@@ -80,6 +105,27 @@ class App extends Component {
       <Footer content={this.state.nama} usia={this.state.umur}></Footer>
       <h1>...........</h1>
       <HandlingEvent></HandlingEvent>
+      <center>
+        <h1>coba routing</h1>
+        <ul>
+          {/* <li><Link to="/">Home</Link></li> */}
+          <li><Link to="/Header">Header</Link></li>
+          <li><Link to="/HandlingEvent">Handling Event</Link></li>
+          <li><Link to="/Footer">Footer</Link></li>
+        </ul>
+        {/* <Flip>
+        <h1 style={{fontSize:'30px'}}>halo flip</h1>
+      </Flip> */}
+      </center>
+      
+
+  
+    {/* <Route path="/" component={'Home'}/> */}
+    <Route path="/Header" component={Header}/>
+    <Route path="/Footer" component={Footer}/>
+    <Route path="/HandlingEvent" component={HandlingEvent}/>
+
+    
     </div>
     );
   }

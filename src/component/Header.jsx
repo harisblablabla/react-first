@@ -7,7 +7,7 @@ class Header extends Component {
 
         return(
             <div className="header">
-                <h1>Header!!!</h1>
+                <h1> INI Header!!!</h1>
                 <ul>
                     <li>home</li>
                     <li>message</li>

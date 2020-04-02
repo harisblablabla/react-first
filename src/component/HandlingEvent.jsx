@@ -16,7 +16,7 @@ class HandlingEvent extends Component {
         console.log('component did mount ' + this.state.nama)
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         this.setState({nama:'will smith'})
         console.log('will mount ' + this.state.nama)
     }
@@ -45,6 +45,7 @@ class HandlingEvent extends Component {
         }
         return(
             <div className="handling">
+                <h1>INI BELAJAR HANDLING EVENT</h1>
                 <h1 style={{background:'red',color:'blue'}}>Halo {this.state.nama}</h1>
                 <button onClick={() => {this.updateName(bio.nama)}}>ubah nama anda</button>
                 <button onClick={() => {this.klik(this.state.nama,this.state.lokasi)}}>klik disini</button>

@@ -5,7 +5,7 @@ class Footer extends Component {
     render() {
         return (
             <div className="footer" style={{background:'yellow', color:'red'}}>
-                <h1>footer</h1>
+                <h1> INI footer</h1>
                 <h2>buatan haris</h2>
                 <button className="btn btn-primary">footer nih</button>
                 <h4>{this.props.content + ' ' + this.props.usia}</h4>

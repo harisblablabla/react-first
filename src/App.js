@@ -11,14 +11,18 @@ import Axios from 'axios';
 class App extends Component {
 
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.nama_panjang = 'andi'
     this.state = {
       nama: '',
       umur: '',
-      judul:[]
+      judul:[],
+      data: 0
     }
+
+    //pake bind, jadi pas dipanggil tinggal panggil biasa gaharus masukin fungsi (arrow function)
+    this.setNewNumber = this.setNewNumber.bind(this)
   }
 
   componentDidMount() {
@@ -44,6 +48,13 @@ class App extends Component {
   sum(x) {
     return x += 3
   }
+
+  
+  setNewNumber() {
+    this.setState({data:this.state.data + 1})
+  }
+
+
 
   render() {
 
@@ -83,6 +94,12 @@ class App extends Component {
     return (
       <div>
         <Header></Header>
+        <div>
+            <button onClick={this.setNewNumber}>tambah bro</button>
+            <h1>{this.state.data}</h1>
+            <HandlingEvent lifecycle={this.state.data}></HandlingEvent>
+        </div>
+        
       <h1 style={style_h1}>Hello World! {nama} !</h1>
       <h1>coba get data</h1>
        <h1>{this.state.judul[2]}</h1>
@@ -104,7 +121,6 @@ class App extends Component {
 
       <Footer content={this.state.nama} usia={this.state.umur}></Footer>
       <h1>...........</h1>
-      <HandlingEvent></HandlingEvent>
       <center>
         <h1>coba routing</h1>
         <ul>

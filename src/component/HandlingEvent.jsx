@@ -18,8 +18,27 @@ class HandlingEvent extends Component {
 
     UNSAFE_componentWillMount() {
         this.setState({nama:'will smith'})
-        console.log('will mount ' + this.state.nama)
+        console.log('component will mount ' + this.state.nama)
     }
+
+    // UNSAFE_componentWillReceiveProps(newProps) {
+    //     console.log('component WILL RECEIVE PROPS')
+    // }
+
+    // shouldComponentUpdate(newProps, newState) {
+    //     console.log('shouldcomponentupdate')
+    //     return true
+    // }
+
+    // UNSAFE_componentWillUpdate(nextProps,nextState) {
+    //     console.log('Component WILL UPDATE')
+    // }
+
+    // componentDidUpdate(prevProps,prevState) {
+    //     console.log('component DID UPDATE')
+    // }
+
+
 
     tambah() {
         this.setState({count: this.state.count + 1})
@@ -46,6 +65,10 @@ class HandlingEvent extends Component {
         return(
             <div className="handling">
                 <h1>INI BELAJAR HANDLING EVENT</h1>
+                <div className="belajar-life-cycle">
+                    <h1>belajar life cycle</h1>
+                    <h1>{this.props.lifecycle}</h1>
+                </div>
                 <h1 style={{background:'red',color:'blue'}}>Halo {this.state.nama}</h1>
                 <button onClick={() => {this.updateName(bio.nama)}}>ubah nama anda</button>
                 <button onClick={() => {this.klik(this.state.nama,this.state.lokasi)}}>klik disini</button>
